@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Akash S – Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface2: #1a1a24;
+      --accent: #4f8ef7;
+      --accent2: #a78bfa;
+      --text: #e8e8f0;
+      --text-muted: #888899;
+      --border: rgba(255,255,255,0.07);
+      --glow: rgba(79,142,247,0.15);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 280px; height: 100vh;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      z-index: 100;
+      overflow-y: auto;
+    }
+    .sidebar .profile-img {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top;
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 30px var(--glow);
+      margin-bottom: 18px;
+    }
+    .sidebar h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      text-align: center;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .sidebar .tagline {
+      font-size: 0.82rem;
+      color: var(--accent);
+      text-align: center;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+      font-weight: 500;
+    }
+    .sidebar-info {
+      width: 100%;
+      background: var(--surface2);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+    }
+    .sidebar-info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8rem;
+    }
+    .sidebar-info-item:last-child { border-bottom: none; }
+    .sidebar-info-item i {
+      color: var(--accent);
+      width: 16px;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+    .sidebar-info-item a { color: var(--text); text-decoration: none; }
+    .sidebar-info-item a:hover { color: var(--accent); }
+    .social-links {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .social-links a {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .social-links a:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    nav { width: 100%; }
+    nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      margin-bottom: 4px;
+    }
+    nav a:hover, nav a.active {
+      background: var(--glow);
+      color: var(--accent);
+    }
+    nav a i { width: 18px; text-align: center; }
+
+    /* ── MAIN ── */
+    .main {
+      margin-left: 280px;
+      min-height: 100vh;
+    }
+    section {
+      padding: 80px 60px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .section-title span { color: var(--accent); }
+    .section-line {
+      width: 50px; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+      margin-bottom: 40px;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: radial-gradient(ellipse at 60% 40%, rgba(79,142,247,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, rgba(167,139,250,0.06) 0%, transparent 50%);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 60px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.3);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 24px;
+      width: fit-content;
+      font-weight: 500;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .hero-name .accent { color: var(--accent); }
+    .hero-role {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+      font-weight: 300;
+    }
+    .hero-role strong { color: var(--text); font-weight: 500; }
+    .hero-desc {
+      max-width: 560px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 36px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 26px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover {
+      background: #3a7ae8;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(79,142,247,0.3);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      padding: 12px 26px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+    .stat-item { text-align: left; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+    .about-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .detail-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .detail-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .detail-value { font-size: 0.88rem; color: var(--text); font-weight: 500; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .skill-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .skill-card:hover { border-color: rgba(79,142,247,0.3); transform: translateY(-3px); }
+    .skill-card:hover::before { opacity: 1; }
+    .skill-icon {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+    .skill-name {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .skill-level { font-size: 0.78rem; color: var(--accent); }
+    .skill-bar {
+      width: 100%;
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 2px;
+      transition: width 1s ease;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .project-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+    .project-card:hover {
+      border-color: rgba(79,142,247,0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .project-thumb {
+      width: 100%; height: 160px;
+      background: linear-gradient(135deg, var(--surface), var(--surface2));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .project-body { padding: 20px; }
+    .project-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+    .tag {
+      background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.2);
+      color: var(--accent);
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 500;
+    }
+    .project-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .project-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── EDUCATION & INTERNSHIP ── */
+    .timeline { position: relative; padding-left: 28px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px; top: 0; bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 32px;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -24px; top: 6px;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--glow);
+    }
+    .timeline-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      transition: all 0.3s;
+    }
+    .timeline-card:hover { border-color: rgba(79,142,247,0.3); }
+    .timeline-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; flex-wrap: wrap; gap: 8px; }
+    .timeline-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+    }
+    .timeline-date {
+      background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.2);
+      color: var(--accent);
+      padding: 3px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+    .timeline-org { font-size: 0.85rem; color: var(--accent2); margin-bottom: 10px; font-weight: 500; }
+    .timeline-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
+    .timeline-desc ul { padding-left: 16px; }
+    .timeline-desc li { margin-bottom: 4px; }
+    .timeline-meta {
+      display: inline-block;
+      background: rgba(167,139,250,0.1);
+      border: 1px solid rgba(167,139,250,0.2);
+      color: var(--accent2);
+      padding: 3px 12px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      margin-top: 10px;
+    }
+
+    /* ── ACHIEVEMENTS ── */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .achievement-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: all 0.3s;
+    }
+    .achievement-card:hover {
+      border-color: rgba(79,142,247,0.3);
+      transform: translateY(-3px);
+    }
+    .achievement-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .achievement-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .achievement-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .cert-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      transition: all 0.3s;
+    }
+    .cert-card:hover { border-color: rgba(79,142,247,0.3); transform: translateY(-2px); }
+    .cert-icon {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(167,139,250,0.1);
+      border: 1px solid rgba(167,139,250,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      color: var(--accent2);
+    }
+    .cert-name { font-weight: 600; font-size: 0.9rem; color: #fff; margin-bottom: 4px; }
+    .cert-issuer { font-size: 0.78rem; color: var(--accent); }
+    .cert-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 4px; line-height: 1.4; }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 16px; }
+    .contact-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .contact-card:hover { border-color: rgba(79,142,247,0.3); transform: translateX(4px); }
+    .contact-card-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .contact-card-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 2px; }
+    .contact-card-value { font-size: 0.9rem; color: var(--text); font-weight: 500; }
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 500; }
+    .form-input, .form-textarea {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      transition: border-color 0.3s;
+      outline: none;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--accent); }
+    .form-textarea { resize: vertical; min-height: 100px; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--border);
+    }
+    footer span { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .sidebar { width: 100%; height: auto; position: relative; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 20px; }
+      .main { margin-left: 0; }
+      section { padding: 50px 24px; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      #hero { padding: 50px 24px; }
+    }
+    @media (max-width: 600px) {
+      .hero-name { font-size: 2rem; }
+      nav { display: flex; flex-wrap: wrap; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <img src="assets/img/profile.jpg" alt="Akash S" class="profile-img"/>
+  <h1>Akash S</h1>
+  <p class="tagline">Java Backend Developer</p>
+
+  <div class="sidebar-info">
+    <div class="sidebar-info-item">
+      <i class="fas fa-map-marker-alt"></i>
+      <span>Chennai, Tamil Nadu</span>
+    </div>
+    <div class="sidebar-info-item">
+      <i class="fas fa-phone"></i>
+      <span>+91 6381349960</span>
+    </div>
+    <div class="sidebar-info-item">
+      <i class="fas fa-envelope"></i>
+      <a href="mailto:akaszzh19@gmail.com">akaszzh19@gmail.com</a>
+    </div>
+    <div class="sidebar-info-item">
+      <i class="fas fa-graduation-cap"></i>
+      <span>B.E. Mechanical Engg.</span>
+    </div>
+  </div>
+
+  <div class="social-links">
+    <a href="https://github.com/AKASH-19-S" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="mailto:akaszzh19@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+    <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+
+  <nav>
+    <a href="#hero" class="active"><i class="fas fa-house"></i> Home</a>
+    <a href="#about"><i class="fas fa-user"></i> About</a>
+    <a href="#skills"><i class="fas fa-code"></i> Skills</a>
+    <a href="#projects"><i class="fas fa-diagram-project"></i> Projects</a>
+    <a href="#education"><i class="fas fa-graduation-cap"></i> Education</a>
+    <a href="#internship"><i class="fas fa-briefcase"></i> Internship</a>
+    <a href="#achievements"><i class="fas fa-trophy"></i> Achievements</a>
+    <a href="#contact"><i class="fas fa-paper-plane"></i> Contact</a>
+  </nav>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-badge">Available for opportunities</div>
+    <h1 class="hero-name">Hi, I'm <span class="accent">Akash S</span><br/>Java Backend Developer</h1>
+    <p class="hero-role">B.E. Mechanical Engineering → <strong>Software Development</strong></p>
+    <p class="hero-desc">
+      Passionate about backend development with hands-on experience in Java, Spring Boot, MySQL, and REST APIs.
+      Transitioning into IT with real project experience and a drive to build reliable, scalable backend systems.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary"><i class="fas fa-diagram-project"></i> View Projects</a>
+      <a href="#contact" class="btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Projects Built</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Achievements</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">2026</div>
+        <div class="stat-label">Graduating</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">About <span>Me</span></h2>
+    <div class="section-line"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a final-year Mechanical Engineering student at SRM Valliammai Engineering College, Chennai,
+          with a strong passion for software development. I've been self-learning Java backend development
+          through certifications, online projects, and hands-on internship experience.
+        </p>
+        <p>
+          My core focus is building backend applications using Java, Spring Boot, and MySQL. I enjoy
+          structuring clean code, designing REST APIs, and solving real-world problems through technology.
+          I'm actively seeking an entry-level Java Backend Developer role where I can contribute and grow.
+        </p>
+        <div class="about-details">
+          <div class="detail-item">
+            <div class="detail-label">Degree</div>
+            <div class="detail-value">B.E. Mechanical Engg.</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">College</div>
+            <div class="detail-value">SRM Valliammai</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">CGPA</div>
+            <div class="detail-value">7.82</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">City</div>
+            <div class="detail-value">Chennai, TN</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Email</div>
+            <div class="detail-value">akaszzh19@gmail.com</div>
+          </div>
+          <div class="detail-item">
+            <div class="detail-label">Status</div>
+            <div class="detail-value">Open to Work ✅</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- Certifications here -->
+        <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:#fff;margin-bottom:16px;">Certifications</h3>
+        <div class="cert-grid" style="grid-template-columns:1fr;">
+          <div class="cert-card">
+            <div class="cert-icon"><i class="fas fa-certificate"></i></div>
+            <div>
+              <div class="cert-name">Java Programming</div>
+              <div class="cert-issuer">Intellipaat (Online)</div>
+              <div class="cert-desc">Core Java, OOP concepts, Collections, Exception Handling</div>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon"><i class="fas fa-database"></i></div>
+            <div>
+              <div class="cert-name">MySQL / Database</div>
+              <div class="cert-issuer">Infosys Springboard (Online)</div>
+              <div class="cert-desc">SQL queries, Joins, Normalization, Indexing, Database Design</div>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-icon"><i class="fas fa-language"></i></div>
+            <div>
+              <div class="cert-name">Hindi Language (3 Levels)</div>
+              <div class="cert-issuer">Dakshina Bharat Hindi Prachar Sabha</div>
+              <div class="cert-desc">Prathmik, Madhyama & Rashtrabhasha certifications</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2 class="section-title">My <span>Skills</span></h2>
+    <div class="section-line"></div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-icon">☕</div>
+        <div class="skill-name">Java</div>
+        <div class="skill-level">Core Java · OOP · Collections</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🍃</div>
+        <div class="skill-name">Spring Boot</div>
+        <div class="skill-level">REST APIs · Spring Data JPA</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:60%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-name">MySQL</div>
+        <div class="skill-level">Queries · Joins · DB Design</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🔗</div>
+        <div class="skill-name">REST APIs</div>
+        <div class="skill-level">CRUD · Postman Testing</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🐙</div>
+        <div class="skill-name">Git & GitHub</div>
+        <div class="skill-level">Version Control · Repositories</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:65%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🐍</div>
+        <div class="skill-name">Flask</div>
+        <div class="skill-level">Python Framework</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:45%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">🧪</div>
+        <div class="skill-name">Postman</div>
+        <div class="skill-level">API Testing · Debugging</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:70%"></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">💻</div>
+        <div class="skill-name">VS Code</div>
+        <div class="skill-level">IDE · Development Tools</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2 class="section-title">My <span>Projects</span></h2>
+    <div class="section-line"></div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-thumb">🌐</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Spring Boot</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">REST API</span>
+            <span class="tag">Postman</span>
+          </div>
+          <div class="project-title">Spring Boot REST API CRUD Application</div>
+          <div class="project-desc">
+            Built a backend application using Spring Boot that performs full CRUD operations connected to MySQL via Spring Data JPA.
+            Organized using Controller, Service, and Repository layers. Tested with Postman and includes input validation and error handling.
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb">🎮</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Core Java</span>
+            <span class="tag">OOP</span>
+            <span class="tag">Console App</span>
+          </div>
+          <div class="project-title">Tic Tac Toe Game</div>
+          <div class="project-desc">
+            Console-based Tic Tac Toe game using Core Java. Implements player turn management, win/draw detection, and invalid input handling.
+            Uses OOP concepts like classes, methods, arrays, and conditionals with dynamic board display.
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb">📚</div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="tag">Java Swing</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">JDBC</span>
+          </div>
+          <div class="project-title">Library Management System</div>
+          <div class="project-desc">
+            Desktop-based library management application with GUI using Java Swing. Features admin login, book and staff management
+            (add/remove), and real-time database operations using JDBC connected to MySQL.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2 class="section-title">My <span>Education</span></h2>
+    <div class="section-line"></div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-title">B.E. Mechanical Engineering</div>
+            <div class="timeline-date">2022 – 2026</div>
+          </div>
+          <div class="timeline-org">SRM Valliammai Engineering College, Chennai</div>
+          <div class="timeline-desc">Pursuing Bachelor of Engineering with focus on core mechanical subjects while actively upskilling in Java Backend Development through self-learning and certifications.</div>
+          <span class="timeline-meta">CGPA: 7.82</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-title">Higher Secondary (Class XII)</div>
+            <div class="timeline-date">2022</div>
+          </div>
+          <div class="timeline-org">Kalaimahal Matric Hr Sec School</div>
+          <div class="timeline-desc">Completed Higher Secondary education with Computer Science as a major subject.</div>
+          <span class="timeline-meta">Percentage: 67%</span>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-title">Secondary School (Class X)</div>
+            <div class="timeline-date">2020</div>
+          </div>
+          <div class="timeline-org">Guru Gnanam Sambandar Mission Matric Hr Sec School</div>
+          <div class="timeline-desc">Completed Secondary School education with strong academic foundation.</div>
+          <span class="timeline-meta">Percentage: 61%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERNSHIP -->
+  <section id="internship">
+    <h2 class="section-title">My <span>Internship</span></h2>
+    <div class="section-line"></div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div class="timeline-title">Java Backend Developer</div>
+            <div class="timeline-date">Virtual Internship</div>
+          </div>
+          <div class="timeline-org">Online – Java Backend Development</div>
+          <div class="timeline-desc">
+            <ul>
+              <li>Built RESTful web services using Java and Spring Boot with MySQL integration</li>
+              <li>Implemented CRUD operations and tested APIs using Postman</li>
+              <li>Applied OOP principles and structured backend architecture in real-time project development</li>
+              <li>Gained hands-on experience with Spring Data JPA, Controller-Service-Repository pattern</li>
+            </ul>
+          </div>
+          <span class="timeline-meta">Java · Spring Boot · MySQL · REST API · Postman</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <h2 class="section-title">My <span>Achievements</span></h2>
+    <div class="section-line"></div>
+    <div class="achievements-grid">
+      <div class="achievement-card">
+        <div class="achievement-icon">🧘</div>
+        <div>
+          <div class="achievement-title">International Yoga Competition</div>
+          <div class="achievement-desc">Participated in International Yoga Competition held in Pondicherry and received certification, demonstrating discipline, focus, and commitment to excellence.</div>
+        </div>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-icon">🏆</div>
+        <div>
+          <div class="achievement-title">State-Level Yoga Competition</div>
+          <div class="achievement-desc">Represented school at State-Level Yoga Competition and won prize, showcasing physical fitness, consistency, and competitive spirit.</div>
+        </div>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-icon">🇮🇳</div>
+        <div>
+          <div class="achievement-title">Hindi Language Certifications</div>
+          <div class="achievement-desc">Successfully completed 3 levels of Hindi Language examinations — Prathmik, Madhyama, and Rashtrabhasha — conducted by Dakshina Bharat Hindi Prachar Sabha.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2 class="section-title">Contact <span>Me</span></h2>
+    <div class="section-line"></div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p style="color:var(--text-muted);font-size:0.92rem;margin-bottom:8px;line-height:1.7;">
+          Feel free to reach out for job opportunities, collaborations, or just to connect!
+        </p>
+        <a href="mailto:akaszzh19@gmail.com" class="contact-card">
+          <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+          <div>
+            <div class="contact-card-label">Email</div>
+            <div class="contact-card-value">akaszzh19@gmail.com</div>
+          </div>
+        </a>
+        <a href="tel:+916381349960" class="contact-card">
+          <div class="contact-card-icon"><i class="fas fa-phone"></i></div>
+          <div>
+            <div class="contact-card-label">Phone</div>
+            <div class="contact-card-value">+91 6381349960</div>
+          </div>
+        </a>
+        <a href="https://github.com/AKASH-19-S" target="_blank" class="contact-card">
+          <div class="contact-card-icon"><i class="fab fa-github"></i></div>
+          <div>
+            <div class="contact-card-label">GitHub</div>
+            <div class="contact-card-value">github.com/AKASH-19-S</div>
+          </div>
+        </a>
+        <div class="contact-card" style="cursor:default;">
+          <div class="contact-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div>
+            <div class="contact-card-label">Location</div>
+            <div class="contact-card-value">Chennai, Tamil Nadu, India</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="contact-form">
+          <div class="form-group">
+            <label class="form-label">Your Name</label>
+            <input type="text" class="form-input" placeholder="Enter your name"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Your Email</label>
+            <input type="email" class="form-input" placeholder="Enter your email"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <input type="text" class="form-input" placeholder="Job opportunity / Collaboration"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message</label>
+            <textarea class="form-textarea" placeholder="Your message here..."></textarea>
+          </div>
+          <button class="btn-primary" style="border:none;cursor:pointer;width:fit-content;">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 <span>Akash S</span> · All Rights Reserved · Built with ❤️ from Chennai</p>
+  </footer>
+
+</main>
+
+<script>
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('section');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 200) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
